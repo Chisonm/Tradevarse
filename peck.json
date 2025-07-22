@@ -1,0 +1,12 @@
+{
+    "preset": "laravel",
+    "ignore": {
+        "words": [
+           "php", "filesystems", "favicon", "js", "eslint", "dropdown", "nav", "tooltip", "utils", "ssr"
+        ],
+        "paths": [
+            "app/Providers/SoloServiceProvider.php",
+            "/tsconfig.json"
+        ]
+    }
+}

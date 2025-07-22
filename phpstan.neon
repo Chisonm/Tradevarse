@@ -1,0 +1,34 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+    - vendor/nesbot/carbon/extension.neon
+    - phpstan-baseline.neon
+
+parameters:
+
+    paths:
+        - app/
+        - routes/
+        - database/
+        - tests/
+
+    level: max
+
+    treatPhpDocTypesAsCertain: false
+    reportUnmatchedIgnoredErrors: false
+    checkExplicitMixedMissingReturn: true
+    checkFunctionNameCase: true
+    checkInternalClassCaseSensitivity: true
+    universalObjectCratesClasses:
+        - stdClass
+
+    # Ignore some Laravel patterns
+    ignoreErrors:
+        - '#Cannot access property \$[a-zA-Z0-9\\_]+ on App\\Models\\User\|null#'
+        - '#Cannot call method [a-zA-Z0-9\\_]+\(\) on App\\Models\\User\|null#'
+        - '#Call to an undefined method PHPUnit\\Framework\\TestCase::#'
+        - '#Cannot call method .* on mixed#'
+        - '#Parameter .* expects string, mixed given#'
+        - '#Binary operation "." between .* and mixed#'
+        - '#Cannot access property \$\w+ on mixed#'
+        - '#property\.nonObject#'
+        - '#binaryOp\.invalid#'
