@@ -30,11 +30,14 @@ final class AppServiceProvider extends ServiceProvider
         Vite::prefetch(concurrency: 3);
         Model::automaticallyEagerLoadRelationships();
         Model::shouldBeStrict();
-        URL::forceHttps();
+        if (app()->isProduction()) {
+            URL::forceHttps();
+        }
         Http::preventStrayRequests();
         DB::prohibitDestructiveCommands(
             app()->isProduction(),
         );
-        Password::defaults(fn (): ?Password => app()->isProduction() ? Password::min(12)->max(255)->uncompromised() : null);
+        Password::defaults(fn (): ?Password => app()->isProduction() ?
+            Password::min(12)->max(255)->uncompromised() : null);
     }
 }
